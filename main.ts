@@ -1,13 +1,26 @@
 // ahem, main ...
 IR.onReceivedIR(function () {
-    oledssd1306.clearDisplay()
     basic.setLedColors(0x00ff00, 0x00ff00, 0x00ff00)
-    oledssd1306.setTextXY(0, 0)
-    oledssd1306.writeString(IR.getRecType())
-    oledssd1306.setTextXY(1, 0)
-    oledssd1306.writeString(IR.getMessage())
+    textCodeListe[Zeile] = IR.getRecType()
+    textEmpfangListe[Zeile] = IR.getMessage()
+    oledssd1306.setTextXY(Zeile, 0)
+    oledssd1306.writeString(textCodeListe[Zeile])
+    oledssd1306.setTextXY(Zeile, 6)
+    oledssd1306.writeString(textEmpfangListe[Zeile])
+    if (Zeile < 4) {
+        Zeile += 1
+    } else {
+        Zeile = 0
+        oledssd1306.clearDisplay()
+    }
 })
+let Zeile = 0
+let textEmpfangListe: string[] = []
+let textCodeListe: string[] = []
 oledssd1306.initDisplay()
+textCodeListe = [""]
+textEmpfangListe = [""]
+Zeile = 0
 basic.setLedColors(0xff0000, 0xff0000, 0xff0000)
 basic.pause(500)
 IR.setREC_pin(
