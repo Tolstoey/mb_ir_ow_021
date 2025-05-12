@@ -2,7 +2,9 @@
 IR.onReceivedIR(function () {
     oledssd1306.clearDisplay()
     basic.setLedColors(0x00ff00, 0x00ff00, 0x00ff00)
+    oledssd1306.setTextXY(0, 0)
     oledssd1306.writeString(IR.getRecType())
+    oledssd1306.setTextXY(1, 0)
     oledssd1306.writeString(IR.getMessage())
 })
 oledssd1306.initDisplay()
