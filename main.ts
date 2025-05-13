@@ -4,8 +4,10 @@ IR.onReceivedIR(function () {
     textCodeListe[Zeile] = IR.getRecType()
     textEmpfangListe[Zeile] = IR.getMessage()
     oledssd1306.setTextXY(Zeile, 0)
+    oledssd1306.writeNumber(Zeile)
+    oledssd1306.setTextXY(Zeile, 3)
     oledssd1306.writeString(textCodeListe[Zeile])
-    oledssd1306.setTextXY(Zeile, 6)
+    oledssd1306.setTextXY(Zeile, 8)
     oledssd1306.writeString(textEmpfangListe[Zeile])
     if (Zeile < 4) {
         Zeile += 1
