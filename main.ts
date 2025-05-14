@@ -1,28 +1,39 @@
 // ahem, main ...
 IR.onReceivedIR(function () {
     basic.setLedColors(0x00ff00, 0x00ff00, 0x00ff00)
-    textCodeListe[Zeile] = IR.getRecType()
-    textEmpfangListe[Zeile] = IR.getMessage()
-    oledssd1306.setTextXY(Zeile, 0)
-    oledssd1306.writeNumber(Zeile)
-    oledssd1306.setTextXY(Zeile, 3)
-    oledssd1306.writeString(textCodeListe[Zeile])
-    oledssd1306.setTextXY(Zeile, 8)
-    oledssd1306.writeString(textEmpfangListe[Zeile])
-    if (Zeile < 4) {
-        Zeile += 1
-    } else {
-        Zeile = 0
-        oledssd1306.clearDisplay()
-    }
+    textCodeListe[Zelle] = IR.getRecType()
+    textEmpfangListe[Zelle] = IR.getMessage()
+    schreibe_Zellinhalt_in_Zeile(Zelle, nextFreeLine)
+    Zelle += 1
 })
-let Zeile = 0
+function schreibe_Zellinhalt_in_Zeile (ZelleX: number, ZeileX: number) {
+    if (nextFreeLine == 0) {
+        oledssd1306.clearDisplay()
+        nextFreeLine += 1
+    } else {
+        if (nextFreeLine < 7) {
+            nextFreeLine += 1
+        } else {
+            nextFreeLine = 0
+        }
+    }
+    oledssd1306.setTextXY(ZeileX, 0)
+    oledssd1306.writeNumber(ZelleX)
+    oledssd1306.setTextXY(ZeileX, 3)
+    oledssd1306.writeString(textCodeListe[ZelleX])
+    oledssd1306.setTextXY(ZelleX, 8)
+    oledssd1306.writeString(textEmpfangListe[ZelleX])
+}
+let Zelle = 0
 let textEmpfangListe: string[] = []
 let textCodeListe: string[] = []
+let nextFreeLine = 0
+let Zeilen_pro_Seite = 8
+nextFreeLine = 0
 oledssd1306.initDisplay()
 textCodeListe = [""]
 textEmpfangListe = [""]
-Zeile = 0
+Zelle = 0
 basic.setLedColors(0xff0000, 0xff0000, 0xff0000)
 basic.pause(500)
 IR.setREC_pin(
