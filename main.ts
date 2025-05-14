@@ -6,6 +6,7 @@ IR.onReceivedIR(function () {
     schreibe_Zellinhalt_in_Zeile(Zelle, nextFreeLine)
     Zelle += 1
 })
+// Aufruf: Speicherstelle und Zeile, in die geschrieben werden soll angeben. Wenn Display voll ist, wird vor dem schreiben Display gelöscht und in oberste Zeile geschrieben
 function schreibe_Zellinhalt_in_Zeile (ZelleX: number, ZeileX: number) {
     if (nextFreeLine == 0) {
         oledssd1306.clearDisplay()
