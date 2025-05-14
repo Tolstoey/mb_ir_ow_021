@@ -5,15 +5,6 @@ IR.onReceivedIR(function () {
     oledssd1306.writeString(IR.getRecType())
     oledssd1306.writeString(IR.getMessage())
 })
-input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
-	
-})
-input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
-	
-})
-input.onGesture(Gesture.Shake, function () {
-    oledssd1306.clearDisplay()
-})
 oledssd1306.initDisplay()
 basic.setLedColors(0xff0000, 0xff0000, 0xff0000)
 basic.pause(500)
