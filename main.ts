@@ -28,7 +28,7 @@ function schreibe_Zellinhalt_in_Zeile (ZelleX: number, ZeileX: number) {
     oledssd1306.writeNumber(ZelleX)
     oledssd1306.setTextXY(ZeileX, 3)
     oledssd1306.writeString(textCodeListe[ZelleX])
-    oledssd1306.setTextXY(ZelleX, 8)
+    oledssd1306.setTextXY(ZeileX, 8)
     oledssd1306.writeString(textEmpfangListe[ZelleX])
 }
 let Zelle = 0
