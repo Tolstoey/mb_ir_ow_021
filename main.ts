@@ -1,3 +1,8 @@
+function Seite_weiterblättern () {
+    for (let index = 0; index < Zeilen_pro_Seite; index++) {
+    	
+    }
+}
 // ahem, main ...
 IR.onReceivedIR(function () {
     basic.setLedColors(0x00ff00, 0x00ff00, 0x00ff00)
@@ -29,7 +34,9 @@ let Zelle = 0
 let textEmpfangListe: string[] = []
 let textCodeListe: string[] = []
 let nextFreeLine = 0
-let Zeilen_pro_Seite = 8
+let Zeilen_pro_Seite = 0
+Zeilen_pro_Seite = 8
+let aktuelle_Seitenzahl = 1
 nextFreeLine = 0
 oledssd1306.initDisplay()
 textCodeListe = [""]
