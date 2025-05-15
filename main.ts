@@ -1,8 +1,9 @@
-function Seite_weiterblättern () {
-    oledssd1306.clearDisplay()
-    for (let Index = 0; Index <= Zeilen_pro_Seite - 1; Index++) {
-        schreibe_Zellinhalt_in_Zeile(aktuelle_Seitenzahl * Zeilen_pro_Seite + Index, Index)
+function Seite_zurueckblaettern () {
+    for (let Index = 0; Index <= Zeilen_pro_Seite; Index++) {
+        schreibe_Zellinhalt_in_Zeile((aktuelle_Seitenzahl - 2) * Zeilen_pro_Seite + Index, Index)
     }
+    aktuelle_Seitenzahl += -1
+    nextFreeLine = 0
 }
 // ahem, main ...
 IR.onReceivedIR(function () {
@@ -11,6 +12,20 @@ IR.onReceivedIR(function () {
     textEmpfangListe[Zelle] = IR.getMessage()
     schreibe_Zellinhalt_in_Zeile(Zelle, nextFreeLine)
     Zelle += 1
+})
+input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
+    Seite_zurueckblaettern()
+})
+function Seite_weiterblaettern () {
+    oledssd1306.clearDisplay()
+    for (let Index = 0; Index <= Zeilen_pro_Seite - 1; Index++) {
+        schreibe_Zellinhalt_in_Zeile(aktuelle_Seitenzahl * Zeilen_pro_Seite + Index, Index)
+    }
+    aktuelle_Seitenzahl += 1
+    nextFreeLine = 0
+}
+input.onButtonEvent(Button.B, input.buttonEventClick(), function () {
+    Seite_weiterblaettern()
 })
 // Aufruf: Speicherstelle und Zeile, in die geschrieben werden soll angeben. Wenn Display voll ist, wird vor dem schreiben Display gelöscht und in oberste Zeile geschrieben
 function schreibe_Zellinhalt_in_Zeile (ZelleX: number, ZeileX: number) {
