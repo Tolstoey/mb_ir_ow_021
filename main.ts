@@ -1,6 +1,7 @@
 function Seite_weiterblättern () {
-    for (let index = 0; index < Zeilen_pro_Seite; index++) {
-    	
+    oledssd1306.clearDisplay()
+    for (let Index = 0; Index <= Zeilen_pro_Seite - 1; Index++) {
+        schreibe_Zellinhalt_in_Zeile(aktuelle_Seitenzahl * Zeilen_pro_Seite + Index, Index)
     }
 }
 // ahem, main ...
@@ -34,9 +35,10 @@ let Zelle = 0
 let textEmpfangListe: string[] = []
 let textCodeListe: string[] = []
 let nextFreeLine = 0
+let aktuelle_Seitenzahl = 0
 let Zeilen_pro_Seite = 0
 Zeilen_pro_Seite = 8
-let aktuelle_Seitenzahl = 1
+aktuelle_Seitenzahl = 1
 nextFreeLine = 0
 oledssd1306.initDisplay()
 textCodeListe = [""]
